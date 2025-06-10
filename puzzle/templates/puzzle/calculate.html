@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Interactive Treasure Hunt</title>
+    <style>
+        body{
+            background-color: rgb(181, 238, 235);
+        }
+    </style>
+</head>
+<body>
+    <h1>Welcome to the Interactive Treasure Hunt!</h1>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Solve the Puzzle</button>
+    </form>
+
+    {% if result %}
+        <h2>Number Puzzle:</h2>
+        <p>{{ result.number_result }}</p>
+
+        <h2>Text Puzzle:</h2>
+        <p>{{ result.text_result|linebreaks }}</p>
+
+        <h2>Treasure Hunt:</h2>
+        <p>{{ result.treasure_result|safe }}</p>
+    {% endif %}
+</body>
+</html>
